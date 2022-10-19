@@ -13,6 +13,9 @@ app.use(express.json())
 
 const storage = multer.diskStorage({
 	destination: (_, __, callback) => {
+		if (!fs.existsSync('uploads')) {
+			fs.mkdirSync('uploads')
+		}
 		callback(null, 'uploads')
 	},
 	filename: (_, file, callback) => {
